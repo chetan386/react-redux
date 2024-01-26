@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Cart from './components/Cart';
+import Dashboard from './components/Dashboard';
+import { createBrowserRouter,createRoutesFromElements,Route, RouterProvider } from 'react-router-dom';
+import RootRoute from './components/RootRoute';
+// json.strihngy, function passing onclick
 function App() {
+   
+  const router = createBrowserRouter(createRoutesFromElements(
+     <Route path='/' element={<RootRoute />} >
+      <Route index element={<Dashboard />}></Route>
+      <Route path="/cart" element={<Cart />}></Route>
+     </Route>  
+
+  ))
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <RouterProvider router = {router} />
     </div>
   );
 }
